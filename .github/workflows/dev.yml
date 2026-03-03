@@ -144,107 +144,107 @@ jobs:
           name: Upload Artifacts - Windows Setup x64,
           if: runner.os == 'Windows',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Windows-setup-x64, path: dist/*-x64-setup.exe },
+          with: { name: ZQ-Player-Windows-setup-x64, path: dist/*-x64-setup.exe },
         }
       - {
           name: Upload Artifacts - Windows Setup arm64,
           if: runner.os == 'Windows',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Windows-setup-arm64, path: dist/*-arm64-setup.exe },
+          with: { name: ZQ-Player-Windows-setup-arm64, path: dist/*-arm64-setup.exe },
         }
       - {
           name: Upload Artifacts - Windows Portable x64,
           if: runner.os == 'Windows',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Windows-portable-x64, path: dist/*-x64-portable.exe },
+          with: { name: ZQ-Player-Windows-portable-x64, path: dist/*-x64-portable.exe },
         }
       - {
           name: Upload Artifacts - Windows Portable arm64,
           if: runner.os == 'Windows',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Windows-portable-arm64, path: dist/*-arm64-portable.exe },
+          with: { name: ZQ-Player-Windows-portable-arm64, path: dist/*-arm64-portable.exe },
         }
       - {
           name: Upload Artifacts - macOS DMG x64,
           if: runner.os == 'macOS',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-macOS-dmg-x64, path: dist/*-x64.dmg },
+          with: { name: ZQ-Player-macOS-dmg-x64, path: dist/*-x64.dmg },
         }
       - {
           name: Upload Artifacts - macOS DMG arm64,
           if: runner.os == 'macOS',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-macOS-dmg-arm64, path: dist/*-arm64.dmg },
+          with: { name: ZQ-Player-macOS-dmg-arm64, path: dist/*-arm64.dmg },
         }
       - {
           name: Upload Artifacts - macOS Zip x64,
           if: runner.os == 'macOS',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-macOS-zip-x64, path: dist/*-x64.zip },
+          with: { name: ZQ-Player-macOS-zip-x64, path: dist/*-x64.zip },
         }
       - {
           name: Upload Artifacts - macOS Zip arm64,
           if: runner.os == 'macOS',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-macOS-zip-arm64, path: dist/*-arm64.zip },
+          with: { name: ZQ-Player-macOS-zip-arm64, path: dist/*-arm64.zip },
         }
       - {
           name: Upload Artifacts - Linux AppImage x64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-appimage-x64, path: dist/*-x86_64.AppImage },
+          with: { name: ZQ-Player-Linux-appimage-x64, path: dist/*-x86_64.AppImage },
         }
       - {
           name: Upload Artifacts - Linux AppImage arm64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-appimage-arm64, path: dist/*-arm64.AppImage },
+          with: { name: ZQ-Player-Linux-appimage-arm64, path: dist/*-arm64.AppImage },
         }
       - {
           name: Upload Artifacts - Linux Pacman x64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-pacman-x64, path: dist/*-x64.pacman },
+          with: { name: ZQ-Player-Linux-pacman-x64, path: dist/*-x64.pacman },
         }
       - {
           name: Upload Artifacts - Linux Pacman arm64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-pacman-arm64, path: dist/*-aarch64.pacman },
+          with: { name: ZQ-Player-Linux-pacman-arm64, path: dist/*-aarch64.pacman },
         }
       - {
           name: Upload Artifacts - Linux DEB x64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-deb-x64, path: dist/*-amd64.deb },
+          with: { name: ZQ-Player-Linux-deb-x64, path: dist/*-amd64.deb },
         }
       - {
           name: Upload Artifacts - Linux DEB arm64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-deb-arm64, path: dist/*-arm64.deb },
+          with: { name: ZQ-Player-Linux-deb-arm64, path: dist/*-arm64.deb },
         }
       - {
           name: Upload Artifacts - Linux RPM x64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-rpm-x64, path: dist/*-x86_64.rpm },
+          with: { name: ZQ-Player-Linux-rpm-x64, path: dist/*-x86_64.rpm },
         }
       - {
           name: Upload Artifacts - Linux RPM arm64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-rpm-arm64, path: dist/*-aarch64.rpm },
+          with: { name: ZQ-Player-Linux-rpm-arm64, path: dist/*-aarch64.rpm },
         }
       - {
           name: Upload Artifacts - Linux Tar x64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-tar-x64, path: dist/*-x64.tar.gz },
+          with: { name: ZQ-Player-Linux-tar-x64, path: dist/*-x64.tar.gz },
         }
       - {
           name: Upload Artifacts - Linux Tar arm64,
           if: runner.os == 'Linux',
           uses: actions/upload-artifact@v4,
-          with: { name: SPlayer-Linux-tar-arm64, path: dist/*-arm64.tar.gz },
+          with: { name: ZQ-Player-Linux-tar-arm64, path: dist/*-arm64.tar.gz },
         }
