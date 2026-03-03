@@ -2,8 +2,7 @@
 <img alt="logo" height="100" width="100" src="public/icons/favicon.png" />
 <h2> ZQ-Player </h2>
 <p> 一个简约的音乐播放器 </p>
-
-
+</div>
 
 ## 🧑‍💻 开发
 
