@@ -31,9 +31,7 @@
           <div
             class="menu-icon"
             v-if="
-              !musicStore.playSong.path &&
-              statusStore.isDeveloperMode &&
-              settingStore.fullscreenPlayerElements.download
+              !musicStore.playSong.path && settingStore.fullscreenPlayerElements.download
             "
             @click.stop="openDownloadSong(musicStore.playSong)"
           >
