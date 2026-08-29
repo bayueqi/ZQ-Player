@@ -53,6 +53,7 @@
     "@pixi/filter-bulge-pinch": "^5.1.1",
     "@pixi/filter-color-matrix": "^7.4.3",
     "@pixi/sprite": "^7.4.3",
+    "@vercel/analytics": "^2.0.1",
     "@vueuse/core": "^14.2.1",
     "@vueuse/integrations": "^14.2.1",
     "axios": "^1.13.5",
