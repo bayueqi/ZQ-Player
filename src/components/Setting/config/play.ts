@@ -428,7 +428,6 @@ export const usePlaySettings = (): SettingConfig => {
             key: "enableAutomix",
             label: "启用自动混音",
             type: "switch",
-            tags: [{ text: "Beta", type: "warning" }],
             description: computed(() =>
               settingStore.playbackEngine === "web-audio"
                 ? "是否启用自动混音功能"
@@ -439,7 +438,7 @@ export const usePlaySettings = (): SettingConfig => {
               set: (v) => {
                 if (v) {
                   window.$dialog.warning({
-                    title: "启用自动混音 (Beta)",
+                    title: "启用自动混音",
                     content:
                       "可能出现兼容性问题，该功能在早期测试，遇到问题请反馈issue，不保证可以及时处理。效果可能因为歌曲而异，保守策略。",
                     positiveText: "开启",
@@ -524,7 +523,6 @@ export const usePlaySettings = (): SettingConfig => {
             key: "audioEngine",
             label: "音频处理引擎",
             type: "select",
-            tags: [{ text: "Beta", type: "warning" }],
             description: () =>
               h("div", [
                 h("span", null, engineTip.value),
@@ -611,7 +609,6 @@ export const usePlaySettings = (): SettingConfig => {
       },
       {
         title: "音乐解锁",
-        tags: [{ text: "Beta", type: "warning" }],
         show: isElectron,
         items: [
           {

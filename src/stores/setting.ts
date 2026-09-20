@@ -156,7 +156,7 @@ export interface SettingState {
   saveMetaFile: boolean;
   /** 使用解锁接口下载 */
   useUnlockForDownload: boolean;
-  /** 内嵌暂逐字歌词 (beta) */
+  /** 内嵌暂逐字歌词 */
   downloadMakeYrc: boolean;
   /** 下载后另存为 ASS 格式 */
   downloadSaveAsAss: boolean;

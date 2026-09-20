@@ -380,7 +380,6 @@ export const useGeneralSettings = (): SettingConfig => {
       },
       {
         title: "备份与恢复",
-        tags: [{ text: "Beta", type: "warning" }],
         show: isElectron,
         items: [
           {

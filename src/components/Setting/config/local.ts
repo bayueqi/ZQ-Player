@@ -319,7 +319,6 @@ export const useLocalSettings = (): SettingConfig => {
             key: "enableDownloadHttp2",
             label: "启用 HTTP/2 下载",
             type: "switch",
-            tags: [{ text: "Beta", type: "warning" }],
             description: "使用 HTTP/2 协议进行下载",
             value: computed({
               get: () => settingStore.enableDownloadHttp2,
@@ -430,7 +429,6 @@ export const useLocalSettings = (): SettingConfig => {
             key: "usePlaybackForDownload",
             label: "模拟播放下载",
             type: "switch",
-            tags: [{ text: "Beta", type: "warning" }],
             description: "使用播放接口进行下载，可能解决部分下载失败问题",
             value: computed({
               get: () => settingStore.usePlaybackForDownload,
@@ -441,7 +439,6 @@ export const useLocalSettings = (): SettingConfig => {
             key: "useUnlockForDownload",
             label: "使用解锁接口下载",
             type: "switch",
-            tags: [{ text: "Beta", type: "warning" }],
             description: "利用配置的解锁服务获取下载链接（优先于默认方式）",
             value: computed({
               get: () => settingStore.useUnlockForDownload,
@@ -452,7 +449,6 @@ export const useLocalSettings = (): SettingConfig => {
             key: "downloadMakeYrc",
             label: "下载时另存逐字歌词文件",
             type: "switch",
-            tags: [{ text: "Beta", type: "warning" }],
             description: "在有条件时保存独立的 YRC/TTML 逐字歌词文件（源文件仍内嵌 LRC）",
             disabled: computed(() => !settingStore.downloadMeta || !settingStore.downloadLyric),
             value: computed({

@@ -215,21 +215,6 @@ class SongDownloadStrategy implements DownloadStrategy {
     const usePlayback = this.settingStore.usePlaybackForDownload;
     const levelName = songLevelData[this.quality].level;
 
-    // 尝试使用播放链接
-    if (usePlayback) {
-      try {
-        const result = await songUrl(this.song.id, levelName as Parameters<typeof songUrl>[1]);
-        if (result.code === 200 && result?.data?.[0]?.url) {
-          return {
-            url: result.data[0].url,
-            type: (result.data[0].type || result.data[0].encodeType || "mp3").toLowerCase(),
-          };
-        }
-      } catch (e) {
-        console.error("Error fetching playback url for download:", e);
-      }
-    }
-
     // 尝试使用解锁链接（仅跟随「使用解锁接口下载」开关）
     if (this.settingStore.useUnlockForDownload) {
       try {
@@ -268,6 +253,21 @@ class SongDownloadStrategy implements DownloadStrategy {
         }
       } catch (e) {
         console.error("Error fetching unlock url for download:", e);
+      }
+    }
+
+    // 尝试使用播放链接
+    if (usePlayback) {
+      try {
+        const result = await songUrl(this.song.id, levelName as Parameters<typeof songUrl>[1]);
+        if (result.code === 200 && result?.data?.[0]?.url) {
+          return {
+            url: result.data[0].url,
+            type: (result.data[0].type || result.data[0].encodeType || "mp3").toLowerCase(),
+          };
+        }
+      } catch (e) {
+        console.error("Error fetching playback url for download:", e);
       }
     }
 

@@ -202,7 +202,7 @@ export interface SettingItem {
 
   /**
    * 标签集合
-   * 显示在标题旁边的标签 (例如: "Beta", "New")
+   * 显示在标题旁边的标签 (例如: "New")
    */
   tags?: SettingTag[];
 

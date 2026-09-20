@@ -426,7 +426,6 @@ export const useLyricSettings = (): SettingConfig => {
             type: "switch",
             description:
               "是否从 AMLL TTML DB 获取歌词（如有），TTML 歌词支持逐字、翻译、音译等功能，将会在下一首歌生效",
-            tags: [{ text: "Beta", type: "warning" }],
             value: computed({
               get: () => settingStore.enableOnlineTTMLLyric,
               set: (v) => (settingStore.enableOnlineTTMLLyric = v),
@@ -502,7 +501,6 @@ export const useLyricSettings = (): SettingConfig => {
       },
       {
         title: "Apple Music-like Lyrics",
-        tags: [{ text: "Beta", type: "warning" }],
         items: [
           {
             key: "useAMLyrics",
@@ -568,7 +566,6 @@ export const useLyricSettings = (): SettingConfig => {
       },
       {
         title: "桌面歌词",
-        tags: [{ text: "Beta", type: "warning" }],
         show: isElectron,
         items: [
           {
