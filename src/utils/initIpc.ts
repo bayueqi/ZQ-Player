@@ -59,6 +59,8 @@ const initIpc = () => {
     window.electron.ipcRenderer.on("desktop-lyric:toggle", () => player.toggleDesktopLyric());
     // 显式关闭桌面歌词
     window.electron.ipcRenderer.on("desktop-lyric:close", () => player.setDesktopLyricShow(false));
+    // 桌面歌词全局快捷键
+    window.electron.ipcRenderer.on("toggle-desktop-lyric", () => player.toggleDesktopLyric());
     // 任务栏歌词开关
     window.electron.ipcRenderer.on("toggle-taskbar-lyric", async () => {
       if (isMac) {
