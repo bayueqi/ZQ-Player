@@ -350,7 +350,19 @@ const toGithub = () => {
 
 onMounted(() => {
   if (props.scrollTo) {
-    handleSearch(`${props.type}::${props.scrollTo}`);
+    // "group:<分组标题>" 格式：定位到分组标题（贴视口顶部，整组可见）
+    if (props.scrollTo.startsWith("group:")) {
+      const groupTitle = props.scrollTo.slice(6);
+      nextTick(() => {
+        setTimeout(() => {
+          document
+            .getElementById(`setting-group-${groupTitle}`)
+            ?.scrollIntoView({ block: "start" });
+        }, 300);
+      });
+    } else {
+      handleSearch(`${props.type}::${props.scrollTo}`);
+    }
   }
 });
 </script>

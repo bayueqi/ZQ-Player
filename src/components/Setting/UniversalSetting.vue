@@ -6,6 +6,7 @@
         v-if="node.type === 'group'"
         class="slide-in-item group-title"
         :class="{ 'first-group': !!node.isFirst }"
+        :id="`setting-group-${node.data.title}`"
         :style="{ '--delay': highlightKey ? '0s' : `${Math.min(index, 15) * 0.03}s` }"
       >
         <n-h3 prefix="bar">
