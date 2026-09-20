@@ -22,7 +22,18 @@ const initShortcutIpc = (): void => {
       const shortcut = allShortcuts[key].globalShortcut;
       if (!shortcut) continue;
       // 快捷键回调
-      const callback = () => mainWin.webContents.send(key);
+      const callback = () => {
+        // 快速显示 / 隐藏主窗口：直接操作窗口（窗口级能力，无需走渲染端）
+        if (key === "toggle-main-window") {
+          if (!mainWin.isVisible() || mainWin.isMinimized()) {
+            mainWindow.showWindow();
+          } else {
+            mainWin.hide();
+          }
+          return;
+        }
+        mainWin.webContents.send(key);
+      };
       const isSuccess = registerShortcut(shortcut, callback);
       if (!isSuccess) failedShortcuts.push(shortcut);
     }

@@ -20,6 +20,7 @@ interface ShortcutStore {
     volumeUp: ShortcutType;
     volumeDown: ShortcutType;
     "toggle-desktop-lyric": ShortcutType;
+    "toggle-main-window": ShortcutType;
     openPlayer: ShortcutType;
     openPlayList: ShortcutType;
     closePlayer: ShortcutType;
@@ -76,6 +77,12 @@ export const useShortcutStore = defineStore("shortcut", {
         name: "桌面歌词",
         shortcut: "CmdOrCtrl+KeyD",
         globalShortcut: "CmdOrCtrl+Shift+D",
+      },
+      // 快速显示 / 隐藏主窗口
+      "toggle-main-window": {
+        name: "显示 / 隐藏主窗口",
+        shortcut: "",
+        globalShortcut: "CmdOrCtrl+Shift+H",
       },
       // 打开播放界面
       openPlayer: {
