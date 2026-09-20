@@ -24,21 +24,21 @@ const config: Configuration = {
   // 哪些文件将不会被压缩，而是解压到构建目录
   asarUnpack: ["public/**"],
   // 将原生插件作为外部资源复制
+  // 注意：from 指向 .node 文件本身（文件级复制），避免保留模块子目录，
+  // 使最终落盘为 resources/native/<xxx>.node，与 native-loader.ts 的
+  // path.join(process.resourcesPath, "native", fileName) 对齐。
   extraResources: [
     {
-      from: "native/external-media-integration",
-      to: "native",
-      filter: ["*.node"],
+      from: "native/external-media-integration/external-media-integration.node",
+      to: "native/external-media-integration.node",
     },
     {
-      from: "native/taskbar-lyric",
-      to: "native",
-      filter: ["*.node"],
+      from: "native/taskbar-lyric/taskbar-lyric.node",
+      to: "native/taskbar-lyric.node",
     },
     {
-      from: "native/tools",
-      to: "native",
-      filter: ["*.node"],
+      from: "native/tools/tools.node",
+      to: "native/tools.node",
     },
   ],
   win: {
