@@ -1,7 +1,8 @@
 <template>
   <n-flex :wrap="false" align="center" style="width: 460px; justify-content: flex-end">
-    <!-- 本地/页面内快捷键 -->
+    <!-- 本地/页面内快捷键（仅全局的项不显示） -->
     <n-input
+      v-if="!allowGlobal || shortcutItem.shortcut"
       :value="shortcutItem.shortcut"
       placeholder="快捷键为空"
       readonly
