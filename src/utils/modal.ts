@@ -267,13 +267,14 @@ export const openDownloadSong = async (song: SongType) => {
   const dataStore = useDataStore();
   const settingStore = useSettingStore();
   if (!isLogin()) return openUserLogin();
-  // 是否可下载（勾选「使用解锁接口下载」时，受限歌曲放行走解锁接口）
+  // 是否可下载（勾选「使用解锁接口下载」或「模拟播放下载」时，受限歌曲放行）
   if (!song) return window.$message.warning("请正确选择歌曲");
   if (
     song.free !== 0 &&
     dataStore.userData.vipType === 0 &&
     !song?.pc &&
-    !settingStore.useUnlockForDownload
+    !settingStore.useUnlockForDownload &&
+    !settingStore.usePlaybackForDownload
   ) {
     return window.$message.warning("账号会员等级不足，请提升权限");
   }
