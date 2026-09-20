@@ -44,7 +44,7 @@
                 <SvgIcon name="Folder" />
               </template>
             </n-input>
-            <n-button type="primary" strong secondary @click="openSetting('local')">
+            <n-button type="primary" strong secondary @click="openSetting('local', 'downloadPath')">
               <template #icon>
                 <SvgIcon name="Settings" />
               </template>
@@ -146,6 +146,7 @@ const getSongDetail = async () => {
 const handleConfirm = () => {
   if (!canDownload.value) {
     window.$message.warning("请先配置下载目录");
+    openSetting("local", "downloadPath");
     return;
   }
 
@@ -174,6 +175,11 @@ const cancel = () => {
 onMounted(() => {
   if (props.songId) {
     getSongDetail();
+  }
+  // 未配置下载目录时，自动跳转到设置的「下载配置」位置
+  if (isElectron && !downloadPath.value) {
+    window.$message.warning("未配置下载目录，请先设置");
+    openSetting("local", "downloadPath");
   }
 });
 </script>

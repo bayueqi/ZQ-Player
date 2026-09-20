@@ -439,7 +439,7 @@ export const useLocalSettings = (): SettingConfig => {
             key: "useUnlockForDownload",
             label: "使用解锁接口下载",
             type: "switch",
-            description: "利用配置的解锁服务获取下载链接（优先于默认方式）",
+            description: "利用配置的解锁服务获取下载链接（优先于其它方式）",
             value: computed({
               get: () => settingStore.useUnlockForDownload,
               set: (v) => handleUnlockDownloadChange(v),
