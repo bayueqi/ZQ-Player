@@ -82,7 +82,7 @@ export const useShortcutStore = defineStore("shortcut", {
       "toggle-main-window": {
         name: "显示 / 隐藏主窗口",
         shortcut: "",
-        globalShortcut: "CmdOrCtrl+Shift+H",
+        globalShortcut: "CmdOrCtrl+Shift+A",
       },
       // 打开播放界面
       openPlayer: {
