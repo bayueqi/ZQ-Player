@@ -233,7 +233,7 @@ async fn process_metadata_update(
         |id| id.to_string().replace('-', "_"),
     );
 
-    let track_path = format!("/com/splayer/track/{track_id_str}");
+    let track_path = format!("/com/zqplayer/track/{track_id_str}");
 
     if let Ok(op) = ObjectPath::try_from(track_path.as_str()) {
         mb = mb.trackid(op);
@@ -330,7 +330,7 @@ async fn run_mpris_loop(mut rx: UnboundedReceiver<MprisCommand>) -> Result<()> {
 
     let pid = process::id();
     // 使用唯一标识符以避免多个实例冲突
-    let identity = format!("splayer.instance{pid}");
+    let identity = format!("zqplayer.instance{pid}");
 
     let player = Player::builder(&identity)
         .can_play(true)

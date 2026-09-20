@@ -1568,7 +1568,7 @@ class PlayerController {
   }
 }
 
-const PLAYER_CONTROLLER_KEY = "__SPLAYER_PLAYER_CONTROLLER__";
+const PLAYER_CONTROLLER_KEY = "__ZQPLAYER_PLAYER_CONTROLLER__";
 
 /**
  * 获取 PlayerController 实例

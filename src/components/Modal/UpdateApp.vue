@@ -88,7 +88,7 @@ const doInstall = () => {
 // 前往下载
 const goDownload = () => {
   emit("close");
-  window.open("https://splayer.imsyy.top/download.html", "_blank");
+  window.open("https://github.com/bayueqi/ZQ-Player/releases", "_blank");
 };
 </script>
 

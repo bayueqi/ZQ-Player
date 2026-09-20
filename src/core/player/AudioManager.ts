@@ -490,7 +490,7 @@ class AudioManager extends TypedEventTarget<AudioEventMap> implements IPlaybackE
   }
 }
 
-const AUDIO_MANAGER_KEY = "__SPLAYER_AUDIO_MANAGER__";
+const AUDIO_MANAGER_KEY = "__ZQPLAYER_AUDIO_MANAGER__";
 
 /**
  * 获取 AudioManager 实例

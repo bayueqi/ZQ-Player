@@ -115,7 +115,7 @@ const exportFilters = () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "splayer-comment-filters.json";
+  a.download = "zq-player-comment-filters.json";
   a.click();
   URL.revokeObjectURL(url);
 };

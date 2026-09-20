@@ -1097,7 +1097,7 @@ export class AutomixManager {
   }
 }
 
-const AUTOMIX_MANAGER_KEY = "__SPLAYER_AUTOMIX_MANAGER__";
+const AUTOMIX_MANAGER_KEY = "__ZQPLAYER_AUTOMIX_MANAGER__";
 export const useAutomixManager = (): AutomixManager => {
   const win = window as Window & { [AUTOMIX_MANAGER_KEY]?: AutomixManager };
   if (!win[AUTOMIX_MANAGER_KEY]) {

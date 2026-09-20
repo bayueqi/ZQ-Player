@@ -23,7 +23,7 @@ const getHeaders = (config: StreamingServerConfig): HeadersInit => {
     `MediaBrowser Client="ZQ-Player"`,
     `Version="1.0.0"`,
     `Device="ZQ-Player Web"`,
-    `DeviceId="splayer-web-client"`,
+    `DeviceId="zq-player-web-client"`,
   ];
 
   if (config.accessToken) {
@@ -105,7 +105,7 @@ export const getAudioStreamUrl = (config: StreamingServerConfig, itemId: string)
   const baseUrl = config.url.endsWith("/") ? config.url.slice(0, -1) : config.url;
   const params = new URLSearchParams({
     UserId: config.userId || "",
-    DeviceId: "splayer-web-client",
+    DeviceId: "zq-player-web-client",
     MaxStreamingBitrate: "140000000",
     Container: "opus,webm|opus,ts|mp3,aac,m4a|aac,m4b|aac,flac,webma,webm|webma,wav,ogg",
     TranscodingContainer: "ts",
