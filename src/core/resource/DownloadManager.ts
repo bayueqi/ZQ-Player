@@ -46,7 +46,6 @@ interface DownloadStrategy {
  */
 class SongDownloadStrategy implements DownloadStrategy {
   private settingStore = useSettingStore();
-  private dataStore = useDataStore();
 
   // prepare 阶段准备的状态
   private _downloadUrl = "";
@@ -231,12 +230,8 @@ class SongDownloadStrategy implements DownloadStrategy {
       }
     }
 
-    // 尝试使用解锁链接
-    const isVipUser = this.dataStore.userData?.vipType > 0;
-    const isRestricted = this.song.free === 1 || this.song.free === 4 || this.song.free === 8;
-    const canUseUnlock = !isRestricted || isVipUser;
-
-    if (this.settingStore.useUnlockForDownload && canUseUnlock) {
+    // 尝试使用解锁链接（仅跟随「使用解锁接口下载」开关）
+    if (this.settingStore.useUnlockForDownload) {
       try {
         const servers = this.settingStore.songUnlockServer
           .filter((s) => s.enabled)

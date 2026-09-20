@@ -3,7 +3,7 @@ import type { CoverType, UpdateInfoType, SettingType, SongType } from "@/types/m
 import { NScrollbar } from "naive-ui";
 import { isLogin } from "./auth";
 import { isArray, isFunction } from "lodash-es";
-import { useDataStore } from "@/stores";
+import { useDataStore, useSettingStore } from "@/stores";
 import router from "@/router";
 import type { StreamingServerConfig as StreamingServerConfigType } from "@/types/streaming";
 
@@ -265,10 +265,16 @@ export const openUpdatePlaylist = async (
 // 下载歌曲
 export const openDownloadSong = async (song: SongType) => {
   const dataStore = useDataStore();
+  const settingStore = useSettingStore();
   if (!isLogin()) return openUserLogin();
-  // 是否可下载
+  // 是否可下载（勾选「使用解锁接口下载」时，受限歌曲放行走解锁接口）
   if (!song) return window.$message.warning("请正确选择歌曲");
-  if (song.free !== 0 && dataStore.userData.vipType === 0 && !song?.pc) {
+  if (
+    song.free !== 0 &&
+    dataStore.userData.vipType === 0 &&
+    !song?.pc &&
+    !settingStore.useUnlockForDownload
+  ) {
     return window.$message.warning("账号会员等级不足，请提升权限");
   }
   const { default: DownloadModal } = await import("@/components/Modal/DownloadModal.vue");
