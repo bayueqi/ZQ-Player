@@ -609,7 +609,6 @@ export const usePlaySettings = (): SettingConfig => {
       },
       {
         title: "音乐解锁",
-        show: isElectron,
         items: [
           {
             key: "useSongUnlock",

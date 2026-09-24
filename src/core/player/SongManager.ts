@@ -11,6 +11,7 @@ import {
 import { QualityType, type SongType, type AudioSourceType } from "@/types/main";
 import { isLogin } from "@/utils/auth";
 import { isElectron } from "@/utils/env";
+import { normalizeAudioUrl } from "@/utils/audioUrl";
 import { formatSongsList } from "@/utils/format";
 import { AI_AUDIO_LEVELS } from "@/utils/meta";
 import { handleSongQuality } from "@/utils/helper";
@@ -224,12 +225,15 @@ class SongManager {
     // 是否仅能试听
     const isTrial = songData?.freeTrialInfo !== null;
     // 返回歌曲地址
+    // 官方地址在网页端需经同源代理，规避混合内容与跨域限制
     const normalizedUrl = isElectron
       ? songData.url
-      : songData.url
-          .replace(/^http:/, "https:")
-          .replace(/m804\.music\.126\.net/g, "m801.music.126.net")
-          .replace(/m704\.music\.126\.net/g, "m701.music.126.net");
+      : normalizeAudioUrl(
+          songData.url
+            .replace(/^http:/, "https:")
+            .replace(/m804\.music\.126\.net/g, "m801.music.126.net")
+            .replace(/m704\.music\.126\.net/g, "m701.music.126.net"),
+        );
     // 若为试听且未开启试听播放，则将 url 置为空，仅标记为试听
     const finalUrl = isTrial && !settingStore.playSongDemo ? null : normalizedUrl;
     
@@ -331,7 +335,7 @@ class SongManager {
         console.log(`最终音质判断：详细输出：`, { unlockUrl, quality });
         return {
           id: songId,
-          url: unlockUrl,
+          url: normalizeAudioUrl(unlockUrl),
           isUnlocked: true,
           quality,
           source: r.value.server,
@@ -425,7 +429,7 @@ class SongManager {
       const songId = nextSong.type === "radio" ? nextSong.dj?.id : nextSong.id;
       if (!songId) return;
       // 是否可解锁
-      const canUnlock = isElectron && nextSong.type !== "radio" && settingStore.useSongUnlock;
+      const canUnlock = nextSong.type !== "radio" && settingStore.useSongUnlock;
       // 先请求官方地址
       const { url: officialUrl, isTrial, quality } = await this.getOnlineUrl(songId, false);
       if (officialUrl && !isTrial) {
@@ -526,7 +530,7 @@ class SongManager {
     // 在线获取
     try {
       // 是否可解锁
-      const canUnlock = isElectron && song.type !== "radio" && settingStore.useSongUnlock;
+      const canUnlock = song.type !== "radio" && settingStore.useSongUnlock;
 
       // 如果指定了非官方源，直接走解锁流程
       if (forceSource && forceSource !== "auto") {

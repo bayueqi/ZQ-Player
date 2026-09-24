@@ -2,5 +2,14 @@
   "outputDirectory": "out/renderer",
   "buildCommand": "SKIP_NATIVE_BUILD=true rimraf dist out && electron-vite build",
   "framework": null,
-  "installCommand": "pnpm install --ignore-scripts"
+  "installCommand": "pnpm install --ignore-scripts",
+  "regions": ["hkg1"],
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 60
+    },
+    "api/**/*.ts": {
+      "maxDuration": 60
+    }
+  }
 }
