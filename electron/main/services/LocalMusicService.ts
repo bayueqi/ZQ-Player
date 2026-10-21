@@ -158,7 +158,15 @@ export class LocalMusicService {
    */
   async scanDirectory(dirPath: string): Promise<MusicTrack[]> {
     await this._scan([dirPath], true);
-    return this.db?.getTracksInPath(dirPath) || [];
+    const tracks = this.db?.getTracksInPath(dirPath) || [];
+    // 清理磁盘上已不存在的记录，避免删除后仍显示
+    const missingPaths = tracks
+      .filter((track) => !existsSync(track.path))
+      .map((track) => track.path);
+    if (missingPaths.length === 0) return tracks;
+    this.db?.deleteTracks(missingPaths);
+    const missingSet = new Set(missingPaths);
+    return tracks.filter((track) => !missingSet.has(track.path));
   }
 
   /** 获取所有歌曲 */
