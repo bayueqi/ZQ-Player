@@ -141,6 +141,8 @@ jobs:
   release:
     name: Create GitHub Release
     needs: build
+    # 单个平台构建失败也要发布，避免整次发布被跳过
+    if: always()
     runs-on: ubuntu-latest
     permissions:
       contents: write
