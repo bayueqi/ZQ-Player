@@ -1,4 +1,5 @@
 import { app, dialog, ipcMain, shell } from "electron";
+import { existsSync } from "node:fs";
 import { access, mkdir, unlink, writeFile, stat } from "node:fs/promises";
 import { isAbsolute, join, normalize, relative, resolve } from "node:path";
 import { Worker } from "node:worker_threads";
@@ -229,7 +230,8 @@ const initFileIpc = (): void => {
       const coverDir = getCoverDir();
       // 扫描指定目录
       const tracks = await localMusicService.scanDirectory(dirPath);
-      return processMusicList(tracks, coverDir);
+      // 只返回磁盘上仍存在的文件，已删除的不再显示
+      return processMusicList(tracks.filter((track) => existsSync(track.path)), coverDir);
     } catch (err) {
       console.error("Failed to get downloaded songs:", err);
       return [];
@@ -274,8 +276,6 @@ const initFileIpc = (): void => {
       }
       // 删除文件
       await unlink(resolvedPath);
-      // 同步删除曲库记录，避免下载管理继续显示
-      await localMusicService.removeTrack(path);
       return true;
     } catch (error) {
       ipcLog.error("❌ File delete error", error);
