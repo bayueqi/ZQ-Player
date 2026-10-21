@@ -274,6 +274,8 @@ const initFileIpc = (): void => {
       }
       // 删除文件
       await unlink(resolvedPath);
+      // 同步删除曲库记录，避免下载管理继续显示
+      await localMusicService.removeTrack(path);
       return true;
     } catch (error) {
       ipcLog.error("❌ File delete error", error);

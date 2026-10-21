@@ -169,6 +169,13 @@ export class LocalMusicService {
     return tracks.filter((track) => !missingSet.has(track.path));
   }
 
+  /** 移除单条曲库记录 */
+  async removeTrack(filePath: string) {
+    await this.ensureInitialized();
+    // 库内路径分隔符不统一，两种写法都删
+    this.db?.deleteTracks([filePath, filePath.replace(/\\/g, "/"), filePath.replace(/\//g, "\\")]);
+  }
+
   /** 获取所有歌曲 */
   async getAllTracks(): Promise<MusicTrack[]> {
     await this.ensureInitialized();
