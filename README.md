@@ -108,16 +108,6 @@ Docker 镜像内包含网页端以及运行所需的服务，默认通过 `25884
 
 6. 点击 `Deploy`，即可成功部署
 
-#### ☁️ Cloudflare Pages 部署
-
-前端与接口代理都在 Cloudflare 上，网易云 API 用外部地址。仓库根目录的 `functions/` 就是 Pages Function。
-
-1. Pages 项目连接仓库，构建命令 `SKIP_NATIVE_BUILD=true electron-vite build`，输出目录 `out/renderer`
-2. 构建时环境变量：`VITE_API_URL = /api/netease`
-3. 运行时环境变量：`NETEASE_API = https://你的API地址`（结尾不加 `/`）
-
-`/api/netease/*` 由 `functions/api/netease/[[path]].ts` 反代到 `NETEASE_API`，`/api/audio` 由 `functions/api/audio.ts` 转发音源。两者都同源，API 端不需要另配 CORS。
-
 #### ⚙️ 服务器部署
 
 1. 重复 `⚙️ Vercel 部署` 中的 1 - 4 步骤
