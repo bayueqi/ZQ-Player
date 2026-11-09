@@ -89,35 +89,6 @@ docker-compose up -d
 
 Docker 镜像内包含网页端以及运行所需的服务，默认通过 `25884` 端口访问。
 
-#### ⚙️ 服务器部署
-
-1. 本程序依赖 [NeteaseCloudMusicApi](https://github.com/neteasecloudmusicapienhanced/api-enhanced) 运行，请先部署该项目或兼容的项目，并取得访问地址
-2. 克隆仓库
-
-   ```bash
-   git clone https://github.com/bayueqi/zq-player.git
-   ```
-
-3. 安装依赖
-
-   ```bash
-   pnpm install
-   ```
-
-4. 复制 `.env.example` 文件并重命名为 `.env`，将 `VITE_API_URL` 改为第一步得到的 API 地址
-
-   ```js
-   VITE_API_URL = "https://example.com";
-   ```
-
-5. 编译打包
-
-   ```bash
-   pnpm build
-   ```
-
-6. 将站点运行目录设置为 `out/renderer` 目录
-
 #### ⚙️ 本地部署
 
 1. 本地部署需要用到 `Node.js`（>= 20），可前往 [Node.js 官网](https://nodejs.org/zh-cn/) 下载安装包，请下载最新稳定版
