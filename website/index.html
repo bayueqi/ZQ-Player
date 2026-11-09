@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZQ-Player — 一个简约的音乐播放器</title>
+    <meta
+      name="description"
+      content="ZQ-Player 是一个简约的音乐播放器，支持扫码与手机号登录、桌面歌词、本地曲库、云盘与 Subsonic / Navidrome 流媒体。"
+    />
+    <meta name="theme-color" content="#fcfbfa" />
+    <link rel="icon" type="image/png" href="assets/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ZQ-Player — 一个简约的音乐播放器" />
+    <meta
+      property="og:description"
+      content="支持扫码与手机号登录、桌面歌词、本地曲库、云盘与 Subsonic / Navidrome 流媒体。"
+    />
+    <meta property="og:image" content="assets/album.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body id="top">
+    <svg class="sprite" aria-hidden="true">
+      <symbol id="i-github" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+        />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M7 17 17 7m0 0H9m8 0v8" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.5" />
+        <path d="m16 16 4 4" />
+      </symbol>
+      <symbol id="i-qr" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="6" height="6" rx="1.5" />
+        <rect x="14" y="4" width="6" height="6" rx="1.5" />
+        <rect x="4" y="14" width="6" height="6" rx="1.5" />
+        <path d="M14 14h3v3M20 14v6h-6" />
+      </symbol>
+      <symbol id="i-lyric" viewBox="0 0 24 24">
+        <rect x="3.5" y="4.5" width="17" height="15" rx="3" />
+        <path d="M7.5 9.5h6M7.5 13h9M7.5 16.5h4" />
+      </symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24">
+        <path
+          d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2-.9 2-1.8 0-1.6-1.3-1.9-1.3-3 0-.9.8-1.7 1.9-1.7h1.6a4.3 4.3 0 0 0 4.3-4.3c0-3.5-3.7-6.2-8.5-6.2Z"
+        />
+        <circle cx="8" cy="10" r="1" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="7.6" r="1" fill="currentColor" stroke="none" />
+        <circle cx="16" cy="9.6" r="1" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24">
+        <path d="M3.5 7.5A2 2 0 0 1 5.5 5.5h3.2l2 2.4h7.8a2 2 0 0 1 2 2v8.6a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z" />
+        <path d="M7.5 13h9" />
+      </symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24">
+        <path d="M7.2 18.5A4.2 4.2 0 0 1 6.6 10a5.4 5.4 0 0 1 10.3 1.1 3.7 3.7 0 0 1-.6 7.4Z" />
+        <path d="M12 15.5V9.8m0 0L9.8 12M12 9.8 14.2 12" />
+      </symbol>
+      <symbol id="i-server" viewBox="0 0 24 24">
+        <rect x="3.5" y="4.5" width="17" height="6" rx="2" />
+        <rect x="3.5" y="13.5" width="17" height="6" rx="2" />
+        <path d="M7 7.5h.01M7 16.5h.01" />
+      </symbol>
+      <symbol id="i-video" viewBox="0 0 24 24">
+        <rect x="3.5" y="5.5" width="17" height="13" rx="3" />
+        <path d="m10.5 9.5 4 2.5-4 2.5Z" />
+      </symbol>
+      <symbol id="i-wave" viewBox="0 0 24 24">
+        <path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2" />
+      </symbol>
+      <symbol id="i-headphone" viewBox="0 0 24 24">
+        <path d="M4.5 15v-3a7.5 7.5 0 0 1 15 0v3" />
+        <rect x="3" y="14" width="4" height="6" rx="2" />
+        <rect x="17" y="14" width="4" height="6" rx="2" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2.5" width="11" height="19" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24">
+        <path d="M20 14.3A8.2 8.2 0 0 1 9.7 4a8.5 8.5 0 1 0 10.3 10.3Z" />
+      </symbol>
+      <symbol id="i-radio" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2.2" />
+        <path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 16.2a6 6 0 0 0 0-8.4M5 5a10 10 0 0 0 0 14M19 19a10 10 0 0 0 0-14" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M8 5.5v13l10.5-6.5Z" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24">
+        <path d="M18 6v12L9 12ZM6 6v12" />
+      </symbol>
+      <symbol id="i-next" viewBox="0 0 24 24">
+        <path d="M6 6v12l9-6ZM18 6v12" />
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24">
+        <path d="M12 19s-6.6-4-6.6-8.4A3.9 3.9 0 0 1 12 7.8a3.9 3.9 0 0 1 6.6 2.8C18.6 15 12 19 12 19Z" />
+      </symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24">
+        <path d="M4.5 9.5h3l4-3.2v11.4l-4-3.2h-3Z" />
+        <path d="M15 9.2a4 4 0 0 1 0 5.6" />
+      </symbol>
+      <symbol id="i-list" viewBox="0 0 24 24">
+        <path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01" />
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="11" height="11" rx="2.5" />
+        <path d="M15 6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15" />
+      </symbol>
+    </svg>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <img src="assets/logo.svg" width="26" height="26" alt="ZQ-Player" />
+          <span>ZQ-Player</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#features">功能</a>
+          <a href="#download">下载</a>
+          <a href="#deploy">部署</a>
+        </nav>
+        <a
+          class="nav-gh"
+          href="https://github.com/bayueqi/zq-player"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub 仓库"
+        >
+          <svg viewBox="0 0 24 24"><use href="#i-github" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="pill reveal">
+            <span class="pill-dot"></span>
+            v1.0.1 · 2026-10-21
+          </span>
+          <h1 class="reveal">ZQ-Player</h1>
+          <p class="hero-lede reveal">
+            一个简约的音乐播放器。扫码登录、桌面歌词、本地曲库、云盘与 Subsonic
+            流媒体，都在同一个客户端里。
+          </p>
+          <div class="hero-actions reveal">
+            <a
+              class="btn btn-primary"
+              href="https://github.com/bayueqi/zq-player/releases"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg viewBox="0 0 24 24"><use href="#i-download" /></svg>
+              下载客户端
+            </a>
+            <a
+              class="btn btn-ghost"
+              href="https://github.com/bayueqi/zq-player"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg viewBox="0 0 24 24"><use href="#i-github" /></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="showcase reveal">
+          <div class="frame">
+            <div class="frame-bar">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="frame-title">ZQ-Player</span>
+              <span class="frame-bar-end"></span>
+            </div>
+
+            <div class="frame-body">
+              <aside class="side">
+                <div class="side-brand">
+                  <img src="assets/logo.svg" width="20" height="20" alt="" />
+                  <span>ZQ-Player</span>
+                </div>
+                <nav class="side-nav">
+                  <a class="is-active">
+                    <svg viewBox="0 0 24 24"><use href="#i-wave" /></svg>发现音乐
+                  </a>
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-radio" /></svg>播客
+                  </a>
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-video" /></svg>视频
+                  </a>
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-folder" /></svg>本地音乐
+                  </a>
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-cloud" /></svg>云盘
+                  </a>
+                </nav>
+                <div class="side-label">我的音乐</div>
+                <nav class="side-nav">
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-heart" /></svg>我喜欢的音乐
+                  </a>
+                  <a>
+                    <svg viewBox="0 0 24 24"><use href="#i-server" /></svg>本地与下载
+                  </a>
+                </nav>
+                <div class="side-label">歌单</div>
+                <div class="side-pls">
+                  <div class="side-pl">
+                    <img src="assets/song.jpg" alt="" />
+                    <span>深夜循环</span>
+                  </div>
+                  <div class="side-pl">
+                    <img src="assets/artist.jpg" alt="" />
+                    <span>通勤路上</span>
+                  </div>
+                  <div class="side-pl">
+                    <img src="assets/video.jpg" alt="" />
+                    <span>老唱片</span>
+                  </div>
+                </div>
+              </aside>
+
+              <section class="main">
+                <div class="toolbar">
+                  <div class="toolbar-nav">
+                    <i></i>
+                    <i></i>
+                  </div>
+                  <div class="searchbar">
+                    <svg viewBox="0 0 24 24"><use href="#i-search" /></svg>
+                    搜索音乐、歌手、歌单
+                  </div>
+                  <img class="avatar" src="assets/avatar.jpg" alt="" />
+                </div>
+
+                <div class="content">
+                  <div class="album-head">
+                    <img class="album-cover" src="assets/album.jpg" alt="" />
+                    <div class="album-meta">
+                      <span class="tag">歌单</span>
+                      <h3>每日推荐</h3>
+                      <p>根据口味生成 · 每日 6:00 更新</p>
+                      <div class="album-actions">
+                        <span class="mini-btn mini-btn-primary">
+                          <svg viewBox="0 0 24 24"><use href="#i-play" /></svg>播放全部
+                        </span>
+                        <span class="mini-btn">
+                          <svg viewBox="0 0 24 24"><use href="#i-heart" /></svg>收藏
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="tracks">
+                    <li class="is-playing">
+                      <span class="col-idx"><span class="eq"><i></i><i></i><i></i></span></span>
+                      <span class="col-title">
+                        <img src="assets/song.jpg" alt="" />
+                        <span class="tt">
+                          <b>夜空中最亮的星</b>
+                          <small>逃跑计划</small>
+                        </span>
+                      </span>
+                      <span class="col-album">世界</span>
+                      <span class="col-time">04:12</span>
+                    </li>
+                    <li>
+                      <span class="col-idx">2</span>
+                      <span class="col-title">
+                        <img src="assets/artist.jpg" alt="" />
+                        <span class="tt"><b>晴天</b><small>周杰伦</small></span>
+                      </span>
+                      <span class="col-album">叶惠美</span>
+                      <span class="col-time">04:29</span>
+                    </li>
+                    <li>
+                      <span class="col-idx">3</span>
+                      <span class="col-title">
+                        <img src="assets/video.jpg" alt="" />
+                        <span class="tt"><b>Yellow</b><small>Coldplay</small></span>
+                      </span>
+                      <span class="col-album">Parachutes</span>
+                      <span class="col-time">04:29</span>
+                    </li>
+                    <li>
+                      <span class="col-idx">4</span>
+                      <span class="col-title">
+                        <img src="assets/album.jpg" alt="" />
+                        <span class="tt"><b>海阔天空</b><small>Beyond</small></span>
+                      </span>
+                      <span class="col-album">乐与怒</span>
+                      <span class="col-time">05:25</span>
+                    </li>
+                    <li>
+                      <span class="col-idx">5</span>
+                      <span class="col-title">
+                        <img src="assets/song.jpg" alt="" />
+                        <span class="tt"><b>起风了</b><small>买辣椒也用券</small></span>
+                      </span>
+                      <span class="col-album">起风了</span>
+                      <span class="col-time">05:11</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="player">
+                  <div class="player-song">
+                    <img src="assets/song.jpg" alt="" />
+                    <div class="player-meta">
+                      <b>夜空中最亮的星</b>
+                      <small>逃跑计划</small>
+                    </div>
+                    <svg class="player-like" viewBox="0 0 24 24"><use href="#i-heart" /></svg>
+                  </div>
+                  <div class="player-center">
+                    <div class="player-btns">
+                      <svg viewBox="0 0 24 24"><use href="#i-prev" /></svg>
+                      <span class="player-play">
+                        <svg viewBox="0 0 24 24"><use href="#i-play" /></svg>
+                      </span>
+                      <svg viewBox="0 0 24 24"><use href="#i-next" /></svg>
+                    </div>
+                    <div class="player-progress">
+                      <span class="time">01:24</span>
+                      <span class="bar"><i></i></span>
+                      <span class="time">04:12</span>
+                    </div>
+                  </div>
+                  <div class="player-tools">
+                    <svg viewBox="0 0 24 24"><use href="#i-volume" /></svg>
+                    <span class="vol"><i></i></span>
+                    <svg viewBox="0 0 24 24"><use href="#i-list" /></svg>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lyric-card">
+            <div class="lyric-head">
+              <svg viewBox="0 0 24 24"><use href="#i-lyric" /></svg>
+              桌面歌词
+            </div>
+            <p>把音量交给夜风</p>
+            <p class="current">让旋律慢慢落下来</p>
+            <p>灯还亮着 歌还没完</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="section-head reveal">
+          <span class="eyebrow">FEATURES</span>
+          <h2>功能</h2>
+          <p>播放、曲库、流媒体与桌面集成，都在同一个客户端里。</p>
+        </div>
+
+        <div class="grid">
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-qr" /></svg></span>
+            <h3>扫码与手机号登录</h3>
+            <p>扫码或手机号登录网易云账号，同步歌单、收藏与播放记录。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-lyric" /></svg></span>
+            <h3>桌面歌词</h3>
+            <p>独立歌词窗口，逐字滚动、双语翻译，支持全局快捷键。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-palette" /></svg></span>
+            <h3>主题色自适应</h3>
+            <p>从封面提取主题色，着色整个界面，支持 Light / Dark / Auto。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-folder" /></svg></span>
+            <h3>本地曲库</h3>
+            <p>导入本地歌曲，自动分类，支持标签与封面编辑。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-cloud" /></svg></span>
+            <h3>云盘</h3>
+            <p>上传音乐到云盘，直接播放，支持歌曲纠正与删除。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-server" /></svg></span>
+            <h3>Subsonic / Navidrome</h3>
+            <p>接入自建流媒体服务，支持多服务器与自动连接。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-video" /></svg></span>
+            <h3>MV 与视频</h3>
+            <p>支持 MV 与视频播放。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-wave" /></svg></span>
+            <h3>频谱与淡入淡出</h3>
+            <p>实时显示音乐频谱，支持音乐渐入渐出。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-headphone" /></svg></span>
+            <h3>离线播放</h3>
+            <p>切换为本地播放器模式后完全不连接网络，适合离线使用。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-phone" /></svg></span>
+            <h3>PWA</h3>
+            <p>网页版支持安装到桌面与手机主屏，移动端基础适配。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-moon" /></svg></span>
+            <h3>深色模式</h3>
+            <p>跟随系统自动切换浅色与深色外观，也可手动指定。</p>
+          </article>
+          <article class="card reveal">
+            <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-radio" /></svg></span>
+            <h3>Last.fm Scrobble</h3>
+            <p>把播放记录上报到 Last.fm。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="download">
+        <div class="section-head reveal">
+          <span class="eyebrow">DOWNLOAD</span>
+          <h2>下载</h2>
+          <p>安装包由 GitHub Releases 发布，开发版可在 Actions 工作流中获取。</p>
+        </div>
+
+        <div class="os-grid">
+          <article class="os-card reveal">
+            <div class="os-top">
+              <h3>Windows</h3>
+              <span class="os-badge">x64 · arm64</span>
+            </div>
+            <p class="os-formats">安装版 .exe · 便携版 portable.exe</p>
+            <a
+              class="btn btn-line"
+              href="https://github.com/bayueqi/zq-player/releases"
+              target="_blank"
+              rel="noreferrer"
+            >
+              下载安装包
+              <svg viewBox="0 0 24 24"><use href="#i-arrow" /></svg>
+            </a>
+          </article>
+          <article class="os-card reveal">
+            <div class="os-top">
+              <h3>macOS</h3>
+              <span class="os-badge">Intel · Apple Silicon</span>
+            </div>
+            <p class="os-formats">安装版 .dmg · 压缩包 .zip</p>
+            <a
+              class="btn btn-line"
+              href="https://github.com/bayueqi/zq-player/releases"
+              target="_blank"
+              rel="noreferrer"
+            >
+              下载安装包
+              <svg viewBox="0 0 24 24"><use href="#i-arrow" /></svg>
+            </a>
+          </article>
+          <article class="os-card reveal">
+            <div class="os-top">
+              <h3>Linux</h3>
+              <span class="os-badge">x64 · arm64</span>
+            </div>
+            <p class="os-formats">.AppImage · .deb · .rpm · .pacman · .tar.gz</p>
+            <a
+              class="btn btn-line"
+              href="https://github.com/bayueqi/zq-player/releases"
+              target="_blank"
+              rel="noreferrer"
+            >
+              下载安装包
+              <svg viewBox="0 0 24 24"><use href="#i-arrow" /></svg>
+            </a>
+          </article>
+        </div>
+
+        <div class="dev-row reveal">
+          <span class="dev-label">开发版</span>
+          <a
+            class="link"
+            href="https://github.com/bayueqi/zq-player/actions/workflows/dev.yml"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub Actions · Dev Workflow
+            <svg viewBox="0 0 24 24"><use href="#i-arrow" /></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="deploy">
+        <div class="section-head reveal">
+          <span class="eyebrow">DEPLOY</span>
+          <h2>部署</h2>
+          <p>Docker 镜像包含网页端与运行所需服务；也可以从源码构建客户端。</p>
+        </div>
+
+        <div class="deploy-grid">
+          <article class="code-card reveal">
+            <div class="code-head">
+              <span class="code-name">Docker</span>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24"><use href="#i-copy" /></svg>
+                <span class="copy-label">复制</span>
+              </button>
+            </div>
+            <pre><code>git clone https://github.com/bayueqi/zq-player.git
+cd zq-player
+docker build -t zq-player .
+docker run -d --name zq-player -p 25884:25884 zq-player</code></pre>
+            <p class="code-note">访问 http://localhost:25884</p>
+          </article>
+
+          <article class="code-card reveal">
+            <div class="code-head">
+              <span class="code-name">本地部署</span>
+              <button class="copy" type="button" data-copy>
+                <svg viewBox="0 0 24 24"><use href="#i-copy" /></svg>
+                <span class="copy-label">复制</span>
+              </button>
+            </div>
+            <pre><code>pnpm install
+pnpm dev
+pnpm build:win   # build:mac / build:linux</code></pre>
+            <p class="code-note">打包输出在 dist 目录</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/logo.svg" width="22" height="22" alt="" />
+          <span>ZQ-Player</span>
+        </div>
+        <nav class="footer-links">
+          <a href="https://github.com/bayueqi/zq-player" target="_blank" rel="noreferrer">GitHub</a>
+          <a
+            href="https://github.com/bayueqi/zq-player/releases"
+            target="_blank"
+            rel="noreferrer"
+            >Releases</a
+          >
+          <a href="https://github.com/bayueqi/zq-player/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer"
+            >更新日志</a
+          >
+          <a href="https://github.com/bayueqi/zq-player/blob/main/LICENSE" target="_blank" rel="noreferrer"
+            >AGPL-3.0</a
+          >
+          <a href="https://t.me/bayueqi" target="_blank" rel="noreferrer">Telegram</a>
+        </nav>
+        <p class="copyright">© <span id="year">2026</span> bayueqi</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

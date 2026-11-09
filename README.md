@@ -89,32 +89,13 @@ docker-compose up -d
 
 Docker 镜像内包含网页端以及运行所需的服务，默认通过 `25884` 端口访问。
 
-#### ⚙️ Vercel 部署
-
-> 其他部署平台大致相同，在此不做说明
-
-1. 本程序依赖 [NeteaseCloudMusicApi](https://github.com/neteasecloudmusicapienhanced/api-enhanced) 运行，请确保您已成功部署该项目或兼容的项目，并成功取得在线访问地址
-2. 点击本仓库右上角的 `Fork`，复制本仓库到你的 `GitHub` 账号
-3. 复制 `/.env.example` 文件并重命名为 `/.env`
-4. 将 `.env` 文件中的 `VITE_API_URL` 改为第一步得到的 API 地址
-
-   ```js
-   VITE_API_URL = "https://example.com";
-   ```
-
-5. 将 `Build and Output Settings` 中的 `Output Directory` 改为 `out/renderer`
-
-   ![build](/screenshots/build.jpg)
-
-6. 点击 `Deploy`，即可成功部署
-
 #### ⚙️ 服务器部署
 
-1. 重复 `⚙️ Vercel 部署` 中的 1 - 4 步骤
+1. 本程序依赖 [NeteaseCloudMusicApi](https://github.com/neteasecloudmusicapienhanced/api-enhanced) 运行，请先部署该项目或兼容的项目，并取得访问地址
 2. 克隆仓库
 
    ```bash
-   git clone https://github.com/imsyy/ZQ-Player.git
+   git clone https://github.com/bayueqi/zq-player.git
    ```
 
 3. 安装依赖
@@ -123,13 +104,19 @@ Docker 镜像内包含网页端以及运行所需的服务，默认通过 `25884
    pnpm install
    ```
 
-4. 编译打包
+4. 复制 `.env.example` 文件并重命名为 `.env`，将 `VITE_API_URL` 改为第一步得到的 API 地址
+
+   ```js
+   VITE_API_URL = "https://example.com";
+   ```
+
+5. 编译打包
 
    ```bash
    pnpm build
    ```
 
-5. 将站点运行目录设置为 `out/renderer` 目录
+6. 将站点运行目录设置为 `out/renderer` 目录
 
 #### ⚙️ 本地部署
 
