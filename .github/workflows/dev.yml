@@ -22,6 +22,8 @@ on:
 
 env:
   NODE_VERSION: 22.x
+  # GitHub 托管 Runner 位于境外，使用 npm 官方源，避免镜像站返回 500
+  NPM_CONFIG_REGISTRY: https://registry.npmjs.org
 
 jobs:
   # ===================================================================
@@ -90,7 +92,7 @@ jobs:
           echo "AR=$(brew --prefix llvm)/bin/llvm-ar" >> $GITHUB_ENV
       # 安装项目依赖
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --registry=https://registry.npmjs.org --fetch-retries 5
       # 复制环境变量文件
       - name: Copy .env file on Windows
         if: runner.os == 'Windows'
