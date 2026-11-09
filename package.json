@@ -29,14 +29,10 @@
     "dev": "pnpm build:native -- --dev && tsx scripts/dev.ts",
     "build": "rimraf dist && pnpm build:native && pnpm typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps",
-    "build:web": "pnpm build",
     "build:unpack": "pnpm build && electron-builder --dir",
     "build:win": "pnpm build && electron-builder --win --config electron-builder.config.ts",
     "build:mac": "pnpm build && electron-builder --mac --config electron-builder.config.ts",
-    "build:linux": "pnpm build && electron-builder --linux --config electron-builder.config.ts",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "build:linux": "pnpm build && electron-builder --linux --config electron-builder.config.ts"
   },
   "dependencies": {
     "@applemusic-like-lyrics/core": "^0.2.0",
