@@ -22,6 +22,9 @@ if ! grep -q "interface3.music.163.com.163jiasu.com" /etc/hosts; then
     echo "127.0.0.1 interface3.music.163.com.163jiasu.com" >> /etc/hosts
 fi
 
+# start the unblock api used by web players
+node /app/docker/unblock-server.mjs 2>&1 &
+
 # start the nginx daemon
 nginx
 

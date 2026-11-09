@@ -29,6 +29,11 @@ COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /app/docker-entrypoint.sh /docker-entrypoint.sh
 
+# unblock api used by web players
+COPY --from=builder /app/package.json /app/package.json
+COPY --from=builder /app/docker /app/docker
+COPY --from=builder /app/electron/server/unblock/kwDES.js /app/electron/server/unblock/kwDES.js
+
 RUN apk add --no-cache npm python3 \
     && npm install -g @unblockneteasemusic/server @neteasecloudmusicapienhanced/api \
     && sed -i 's/\r$//' /docker-entrypoint.sh \
